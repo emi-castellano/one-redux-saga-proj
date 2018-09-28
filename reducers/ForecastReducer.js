@@ -1,9 +1,11 @@
-import { REQUEST_API_DATA, RECEIVE_API_DATA } from '../actions/types'
-
-const forecastReducer = (state = {}, action) => {
+import { RECEIVE_FORECAST_DATA } from '../actions/types'
+const initialState = {
+  forecast: {}
+}
+const forecastReducer = (state = initialState, action) => {
     switch (action.type) {
-        case RECEIVE_API_DATA:
-          return { ...state, data: action.payload }
+        case RECEIVE_FORECAST_DATA:
+          return { ...state, forecast: action.payload }
         default:
           return state;
       }

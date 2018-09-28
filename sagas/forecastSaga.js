@@ -1,16 +1,15 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { REQUEST_FORECAST_DATA } from '../actions/types'
-import { receiveForecastData } from '../actions/forecastActions'
+import { takeLatest, put } from 'redux-saga/effects';
+import { REQUEST_FORECAST_DATA, RECEIVE_FORECAST_DATA } from '../actions/types'
 
-function* getForecastData() {
-    try {
-      const data = {status: 200, weather: { desc: 'Sunny', temp: '19°C', city: 'Montevideo' }}
-      yield put(receiveForecastData(data));
-    } catch (e) {
-      console.log(e);
-    }
+export function* getForecastData(data) {
+  try {
+    const forecast = {desc: 'Sunny', temp: '19°C'}
+    yield put({ type: RECEIVE_FORECAST_DATA, payload: forecast });
+  } catch (e) {
+    console.log(e);
   }
+}
 
-export default function* forecastFetchWatcher() {
+export function* forecastFetchWatcher() {
   yield takeLatest(REQUEST_FORECAST_DATA, getForecastData);
 }

@@ -24,12 +24,16 @@ class HomeScreen extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchForecast: async () => dispatch({ type: REQUEST_FORECAST_DATA }),
+    onFetchForecast: async () => {
+      return dispatch({ type: REQUEST_FORECAST_DATA })
+    }
   }
 }
 
-const mapStateToProps = ({ dataForecast }) => {
-  return { dataForecast }
+const mapStateToProps = (state) => {
+  return {
+    data: state.dataForecast
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
